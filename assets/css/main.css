@@ -1,0 +1,133 @@
+body {
+    margin: 0 auto;
+}
+
+.home-container {
+    background-color: #19004E; 
+    height: 100vh;
+}
+
+nav ul {
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    row-gap: 1rem;
+}
+
+.fa-circle-dollar-to-slot {
+    color: #B9FF00;
+}
+
+.fa-house {
+    color: #B9FF00;
+}
+
+nav li {
+    list-style: none;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-family: "Oxygen Mono";
+}
+
+nav li:first-child {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+nav a {
+    display: block;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 20px;
+}
+
+.title-container .play {
+    text-align: center;
+    align-items: center;
+}
+
+.title h4 {
+    color: white;
+    font-family: "Oxygen Mono";
+    margin-bottom: 0;
+}
+
+.title h1 {
+    color:#B9FF00;
+    font-family: "Oxygen";
+    margin: 5px 0;
+    font-size: 45px;
+}
+
+.title p {
+    color: white;
+    font-family: "Oxygen Mono";
+}
+
+/* Play Button */
+
+.play {
+    margin-top: 60px;
+}
+
+.play a {
+    text-decoration: none;
+    font-family: "Oxygen";
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #B9FF00;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #19004E;
+    transition: 0.3s ease-in-out;
+}
+
+.play a:hover {
+    background-color: #F6FF33;
+    box-shadow: 0px 0px 12px 7px rgba(185,255,0,0.4);
+    color: black;
+    font-weight: bold;
+}
+
+/* Dyanmic Home Page Text */
+.dynamic-text {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+#type-text {
+    color: white;
+    font-family: "Oxygen Mono";
+    font-size: 17px;
+}
+
+/* Disclaimer Section */
+.disclaimer-section {
+    position: absolute;
+    color: #B9FF00;
+    font-family: "Oxygen";
+    bottom: 0;
+    text-align: center;
+    padding: 10px 10px;
+    width: 100%;
+}
+
+@media screen and (min-width: 850px) {
+    .title h1 {
+        font-size: 60px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .title h1 {
+        font-size: 80px;
+    }
+}
