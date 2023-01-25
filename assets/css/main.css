@@ -7,6 +7,10 @@ body {
     height: 100vh;
 }
 
+.sim-title {
+    color:#F6FF33;
+}
+
 nav ul {
     margin: 0;
     padding: 10px 0;
@@ -24,6 +28,11 @@ nav ul {
 
 .fa-house {
     color: #B9FF00;
+    transition: 0.3s ease-in-out;
+}
+
+.fa-house:hover {
+    color: #F6FF33;
 }
 
 nav li {
@@ -41,6 +50,13 @@ nav li:first-child {
 
 nav a {
     display: block;
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #B9FF00;
 }
 
 .title-container {
@@ -120,14 +136,60 @@ nav a {
     width: 100%;
 }
 
+
+/* About Section */
+
+.about-container {
+    background-color: #19004E; 
+}
+
+.about-title {
+    text-align: center;
+}
+
+.about-title h1 {
+    font-family: "Oxygen";
+    color: #B9FF00;
+    font-size: 45px;
+    padding: 20px 10px 0px 10px;
+    margin: 0;
+}
+
+.content {
+    padding: 20px 45px;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+}
+
+.content-section h2{
+    font-family: "Oxygen";
+    color: #B9FF00;
+}
+
+.content-section p {
+    font-family: "Oxygen Mono";
+    color: white;
+    line-height: 1.5;
+}
+
+
 @media screen and (min-width: 850px) {
     .title h1 {
+        font-size: 60px;
+    }
+    .about-title h1 {
         font-size: 60px;
     }
 }
 
 @media screen and (min-width: 1300px) {
     .title h1 {
+        font-size: 80px;
+    }
+    .about-title h1 {
         font-size: 80px;
     }
 }
