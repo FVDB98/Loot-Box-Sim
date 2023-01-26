@@ -83,5 +83,37 @@
                     Gold Items (Exceedingly Rare) that lurk within these cases. 
                 </p>
             </section>
+            <section class="game-container">
+                <section>
+                    <div class="spin">
+                        <button id="btn csgo-spin">Open case: $2</button>
+                        <button id="btn csgo-auto-spin">Auto open case</button>
+                    </div>
+                </section>
+                <section class="congrats-container">
+                    <p id="message"></p>
+                </section>
+                <section class="item-info">
+                    <p id="item-type"></p>
+                    <p id="skin-type"></p>
+                    <p id="quality-type"></p>
+                </section>
+                <section class="csgo-stats" id="play">
+                    <p>Cases opened: <span id="spins"></span></p>
+                    <p>Money spent: $<span id="spending"></span></p>
+                </section>
+                <section class="csgo-items">
+                    <p>Rare</strong> (<span class="probability">79.92%</span>): <span id="milSpec"></span></p>
+                    <p>Mythical</strong> (<span class="probability">15.98%</span>):  <span id="restricted"></span></p>
+                    <p>Legendary</strong> (<span class="probability">3.2%</span>): <span id="classified"></span></p>
+                    <p>Ancient</strong> (<span class="probability">0.64%</span>): <span id="covert"></span></p>
+                    <p>Exceedingly Rare</strong> (<span class="probability">0.26%</span>): <span id="exceedinglyRare"></span></p>
+                </section>
+            </section>
+            <footer class="version-container">
+                Version 0.3
+            </footer>
+        </main> 
     </body>
+    <script src="assets/javascript/csgo-simulator.js"></script>
 </html>
