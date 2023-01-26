@@ -266,6 +266,46 @@ nav a:hover {
     width: 100%;
 }
 
+/* CSGO Sim section */
+.csgo-container {
+    background-color: #19004E;
+}
+
+.csgo-info {
+    padding: 10px 20px;
+}
+
+.csgo-images {
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.csgo-title h1 {
+    font-family: "Oxygen Mono";
+    color: #B9FF00;
+    text-align: center;
+}
+
+.csgo-info h2 {
+    color: #B9FF00;
+    font-family: "Oxygen";
+}
+
+.csgo-info p {
+    color: white;
+    font-family: "Oxygen Mono";
+}
+
+.csgo-info ul li {
+    color: white;
+    font-family: "Oxygen Mono";
+}
+
+.csgo-info ul li span {
+    color: #B9FF00;
+}
 
 @media screen and (min-width: 850px) {
     .title h1 {
