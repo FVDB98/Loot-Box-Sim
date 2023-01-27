@@ -210,14 +210,26 @@ nav a:hover {
 .game-block-plum {
     display: flex;
     flex-direction: column;
-    /* background-color: #40004E; */
     width: 100%;
 }
 
-/* .gradient {
-    background: linear-gradient(90deg, rgba(255,23,228,1) 0%, rgba(134,251,251,1) 100%);
-    height: 2px;
-} */
+.more {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.more h2 {
+    text-align: center;
+    color: #B9FF00;
+    font-family: "Oxygen Mono";
+}
+
+.fa-spinner {
+    color:#B9FF00;
+    text-align: center;
+    padding: 10px;
+}
 
 .game-preview {
     padding: 0px 10px;
