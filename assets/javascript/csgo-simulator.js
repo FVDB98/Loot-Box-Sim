@@ -7,6 +7,7 @@ let restricted = '';
 let classified = '';
 let covert = '';
 let exceedinglyRare = '';
+let exceedinglyRareTrigger = false;
 
 //Stats Tracker
 function renderStats(){
@@ -34,26 +35,34 @@ document.getElementById("btn csgo-spin").addEventListener("click", spin);
 //Event listener to auto calculate button
 document.getElementById("btn csgo-auto-spin").addEventListener("click", autoSpin);
 
+//Event listener to refresh play again button
+document.getElementById("btn play-again").addEventListener("click", refreshGame);
+
+//Hiding play again button 
+document.getElementById("btn play-again").style.visibility = "hidden";
+
 //spin function
 function spin (){
     // generate one random number from 4000
     let randomNumber = Math.floor(Math.random() * 4001);
-        if(randomNumber <= 3218){
+        if(randomNumber <= 3196){
             milSpec ++;
         }
-        else if(randomNumber > 3218 && randomNumber <= 3842){
+        else if(randomNumber > 3196 && randomNumber <= 3835){
             restricted ++;
         }
-        else if(randomNumber > 3842 && randomNumber <= 3955){
+        else if(randomNumber > 3835 && randomNumber <= 3963){
             classified ++;
         }
-        else if(randomNumber > 3955 && randomNumber <= 3988){
+        else if(randomNumber > 3963 && randomNumber <= 3988){
             covert ++;
         }
         else{
             exceedinglyRare ++;
+            exceedinglyRareTrigger = true;
             congratsMessage();
             knivesRoll();
+            hideButtons();
         }
     spins++;
     spending +=2;
@@ -62,19 +71,39 @@ function spin (){
 }
 
 //auto spin until unlocks a Special / Exceedingly Rare Item
-function autoSpin(){
-    // let randomNumber = Math.floor(Math.random() * 4001);
-    do{
-        spin();
+ async function autoSpin(){
+    while(exceedinglyRareTrigger === false){
+        await spin();
     }
-    while (exceedinglyRare === '');
 }
 
 //Message for when one unlocks a Special / Exceedingly Rare Item
 function congratsMessage(){
-    const congratsMessage = document.getElementById("message");
-        congratsMessage.textContent += `Congrats! After spending $${spending + 2} you managed
+    let congratsMessage = document.getElementById("message");
+        congratsMessage.textContent = `Congrats! After spending $${spending + 2} you managed
         to uncase an Exceedingly Rare Item`; 
+}
+
+function hideButtons(){
+    document.getElementById("btn csgo-spin").style.visibility = "hidden";
+    document.getElementById("btn csgo-auto-spin").style.visibility = "hidden";
+    document.getElementById("btn play-again").style.visibility = "visible";
+}
+
+function refreshGame() {
+    spins = 0;
+    spending = 0;
+    milSpec = '';
+    restricted = '';
+    classified = '';
+    covert = '';
+    exceedinglyRare = '';
+    exceedinglyRareTrigger = false;
+
+    renderStats();
+    document.getElementById("btn csgo-spin").style.visibility = "visible";
+    document.getElementById("btn csgo-auto-spin").style.visibility = "visible";
+    document.getElementById("btn play-again").style.visibility = "hidden";
 }
 
 //function for knives randomisation
@@ -92,13 +121,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what Knife it is
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality 
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;
+                            itemQuality.textContent = `Quality: ${qualityType}`;
         }
         // Roll 2 = Bowie Knife
         else if(knifeType === "Bowie Knife"){
@@ -110,13 +139,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             //Display the quality 
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;        
+                            itemQuality.textContent = `Quality: ${qualityType}`;        
         }
         // Roll 3 = Butterfly Knife
         else if(knifeType === "Butterfly Knife"){
@@ -128,13 +157,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;        
+                            itemQuality.textContent = `Quality: ${qualityType}`;        
         }
         // Roll 4 = Falchion Knife
         else if(knifeType === "Falchion Knife"){
@@ -146,13 +175,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         //Display what skin it has
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality 
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 5 = Flip Knife
         else if(knifeType === "Flip Knife"){
@@ -164,13 +193,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality 
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 6 = Gut Knife
         else if(knifeType === "Gut Knife"){
@@ -182,13 +211,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 7 = Huntsman knife
         else if(knifeType === "Hunstsman Knife"){
@@ -200,13 +229,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 8 = Karambit Knife
         else if(knifeType === "Karambit Knife"){
@@ -218,13 +247,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 9 = M9 Bayonet
         else if(knifeType === "M9 Bayonet"){
@@ -236,13 +265,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 10 = Navaja Knife
         else if(knifeType === "Navaja Knife"){
@@ -254,13 +283,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 11 = Nomad Knife
         else if(knifeType === "Nomad Knife"){
@@ -272,13 +301,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 12 = Paracord Knife
         else if(knifeType === "Paracord Knife"){
@@ -290,13 +319,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 13 = Shadow Daggers
         else if(knifeType === "Shadow Daggers"){
@@ -308,13 +337,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 14 = Skeleton Knife
         else if(knifeType === "Skeleton Knife"){
@@ -326,13 +355,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 15 = Stiletto Knife
         else if(knifeType === "Stiletto Knife"){
@@ -344,13 +373,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 16 = Survival Knife
         else if(knifeType === "Survival Knife"){
@@ -362,13 +391,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
         // Roll 17 = Talon Knie
         else if(knifeType === "Talon Knife"){
@@ -380,13 +409,13 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         } 
         // Roll 18 = Ursus Knife
         else{
@@ -398,15 +427,16 @@ function knivesRoll(){
                 console.log(qualityType);
                     // Display what knife it is 
                     const itemDetails = document.getElementById("item-type");
-                    itemDetails.textContent += `Item: ${knifeType}`;
+                    itemDetails.textContent = `Item: ${knifeType}`;
                         // Display what skin it has 
                         const itemSkin = document.getElementById("skin-type");
-                        itemSkin.textContent += `Skin: ${skinType}`;
+                        itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent += `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;           
         }
 }
+
 // Arrays:
 
 // Skin Condition

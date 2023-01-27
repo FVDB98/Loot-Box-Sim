@@ -377,6 +377,11 @@ button:active {
     color:#B9FF00;
     font-family: "Oxygen Mono";
     text-align: center;
+    margin: 0;
+}
+
+.csgo-stats p {
+    margin: 0 auto;
 }
 
 .csgo-items {
@@ -384,8 +389,8 @@ button:active {
     font-family: "Oxygen Mono";
     padding: 10px 20px;
     max-width: 1200px;
-    margin: 0 auto;
 }
+
 
 #message{
     text-align: center;
@@ -401,6 +406,7 @@ button:active {
     align-items: center;
     font-family: "Oxygen";
     color: white;
+    margin-top: 10px;
 }
 
 #item-type{
