@@ -60,6 +60,7 @@ function spin (){
         else{
             exceedinglyRare ++;
             exceedinglyRareTrigger = true;
+            autoSpinInteral = clearInterval(autoSpinInteral);
             congratsMessage();
             knivesRoll();
             hideButtons();
@@ -70,11 +71,22 @@ function spin (){
     renderStats();
 }
 
+
 //auto spin until unlocks a Special / Exceedingly Rare Item
- async function autoSpin(){
-    while(exceedinglyRareTrigger === false){
-        await spin();
+// function autoSpin(){
+//     while(exceedinglyRareTrigger === false){
+//         spin();
+//     }
+// }
+
+
+let autoSpinInteral;
+function autoSpin(){
+    while(exceedinglyRareTrigger != true){
+        autoSpinInteral = setInterval(spin, 10);
+        return;
     }
+    autoSpinInteral = clearInterval(autoSpinInteral);
 }
 
 //Message for when one unlocks a Special / Exceedingly Rare Item
@@ -99,11 +111,17 @@ function refreshGame() {
     covert = '';
     exceedinglyRare = '';
     exceedinglyRareTrigger = false;
+    autoSpinInteral = clearInterval(autoSpinInteral);
 
-    renderStats();
     document.getElementById("btn csgo-spin").style.visibility = "visible";
     document.getElementById("btn csgo-auto-spin").style.visibility = "visible";
     document.getElementById("btn play-again").style.visibility = "hidden";
+    document.getElementById("message").innerHTML = '';
+    document.getElementById("item-type").innerHTML = '';
+    document.getElementById("skin-type").innerHTML = '';
+    document.getElementById("quality-type").innerHTML = '';
+    renderStats();
+
 }
 
 //function for knives randomisation
@@ -397,7 +415,7 @@ function knivesRoll(){
                         itemSkin.textContent = `Skin: ${skinType}`;
                             // Display the quality
                             const itemQuality = document.getElementById("quality-type");
-                            itemQuality.textContent = `Quality: ${qualityType}`;           
+                            itemQuality.textContent = `Quality: ${qualityType}`;         
         }
         // Roll 17 = Talon Knie
         else if(knifeType === "Talon Knife"){
@@ -436,6 +454,7 @@ function knivesRoll(){
                             itemQuality.textContent = `Quality: ${qualityType}`;           
         }
 }
+
 
 // Arrays:
 
