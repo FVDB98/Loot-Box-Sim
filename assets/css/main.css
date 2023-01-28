@@ -253,6 +253,7 @@ nav a:hover {
 .game-content {
     font-family: "Oxygen Mono";
     color: white;
+    text-align: center;
 }
 
 .play-game {
