@@ -7,6 +7,7 @@ let restricted = '';
 let classified = '';
 let covert = '';
 let exceedinglyRare = '';
+//Exceedingly Rare prompt
 let exceedinglyRareTrigger = false;
 
 //Stats Tracker
@@ -35,6 +36,9 @@ document.getElementById("btn csgo-spin").addEventListener("click", spin);
 //Event listener to auto calculate button
 document.getElementById("btn csgo-auto-spin").addEventListener("click", autoSpin);
 
+//Event Listener to disable auto spin button once clicked
+document.getElementById("btn csgo-auto-spin").addEventListener("click", disableButton);
+
 //Event listener to refresh play again button
 document.getElementById("btn play-again").addEventListener("click", refreshGame);
 
@@ -59,18 +63,13 @@ function spin (){
         }
         else{
             exceedinglyRare ++;
-            exceedinglyRareTrigger = true;
-            autoSpinInteral = clearInterval(autoSpinInteral);
-            congratsMessage();
-            knivesRoll();
-            hideButtons();
+            exceedinglyRareItemRoll();
         }
     spins++;
     spending +=2;
 
     renderStats();
 }
-
 
 //auto spin until unlocks a Special / Exceedingly Rare Item
 // function autoSpin(){
@@ -79,14 +78,27 @@ function spin (){
 //     }
 // }
 
-
+//Auto Spin until Exceedingly Rare Item is unlocked
 let autoSpinInteral;
 function autoSpin(){
     while(exceedinglyRareTrigger != true){
         autoSpinInteral = setInterval(spin, 10);
         return;
+        
     }
     autoSpinInteral = clearInterval(autoSpinInteral);
+}
+
+// Disable auto spin button once clicked 
+function disableButton(){
+    let btn = document.getElementById("btn csgo-auto-spin");
+    btn.disabled = true;
+}
+
+// Re-enable auto spin button
+function enableButton(){
+    let btn = document.getElementById("btn csgo-auto-spin");
+    btn.disabled = false;  
 }
 
 //Message for when one unlocks a Special / Exceedingly Rare Item
@@ -96,12 +108,14 @@ function congratsMessage(){
         to uncase an Exceedingly Rare Item`; 
 }
 
+// Hides open case and auto spin button
 function hideButtons(){
     document.getElementById("btn csgo-spin").style.visibility = "hidden";
     document.getElementById("btn csgo-auto-spin").style.visibility = "hidden";
     document.getElementById("btn play-again").style.visibility = "visible";
 }
 
+// Restards the game 
 function refreshGame() {
     spins = 0;
     spending = 0;
@@ -121,7 +135,28 @@ function refreshGame() {
     document.getElementById("skin-type").innerHTML = '';
     document.getElementById("quality-type").innerHTML = '';
     renderStats();
+    enableButton();
+}
 
+// 50/50 roll to decide whether exceedingly rare item is knifes OR gloves
+function exceedinglyRareItemRoll(){
+    let itemDecision = Math.floor(Math.random() * 101);
+        if(itemDecision <= 50){
+            glovesRoll();
+            exceedinglyRareTrigger = true;
+            autoSpinInteral = clearInterval(autoSpinInteral);
+            congratsMessage();
+            hideButtons();
+            console.log(itemDecision);
+        }
+        else{
+            knivesRoll();
+            exceedinglyRareTrigger = true;
+            autoSpinInteral = clearInterval(autoSpinInteral);
+            congratsMessage();
+            hideButtons();
+            console.log(itemDecision);
+        }
 }
 
 //function for knives randomisation
@@ -455,6 +490,150 @@ function knivesRoll(){
         }
 }
 
+// Function for Gloves Roll - same principles as Knives roll
+function glovesRoll(){
+    //Choose Knife Type
+    let gloveType = gloves[Math.floor(Math.random() * gloves.length)];
+    console.log(gloveType);
+        // Roll 1 = Bayonet
+        if(gloveType === "Hand Wraps"){
+            // Randomise Hand Wraps Skin from array
+            let gloveSkinType = handWrapsSkins[Math.floor(Math.random() * handWrapsSkins.length)];
+            console.log(gloveSkinType);
+                // Randomise the skin quality from array
+                let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                console.log(qualityType);
+                    // Display what Gloves it is
+                    const itemDetails = document.getElementById("item-type");
+                    itemDetails.textContent = `Item: ${gloveType}`;
+                        // Display what skin it has
+                        const itemSkin = document.getElementById("skin-type");
+                        itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                            // Display the quality 
+                            const itemQuality = document.getElementById("quality-type");
+                            itemQuality.textContent = `Quality: ${qualityType}`;
+        }
+        else if(gloveType === "Moto Gloves"){
+                        // Randomise Moto Gloves  Skin from array
+                        let gloveSkinType = motoGlovesSkins[Math.floor(Math.random() * motoGlovesSkins.length)];
+                        console.log(gloveSkinType);
+                            // Randomise the skin quality from array
+                            let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                            console.log(qualityType);
+                                // Display what Gloves it is
+                                const itemDetails = document.getElementById("item-type");
+                                itemDetails.textContent = `Item: ${gloveType}`;
+                                    // Display what skin it has
+                                    const itemSkin = document.getElementById("skin-type");
+                                    itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                                        // Display the quality 
+                                        const itemQuality = document.getElementById("quality-type");
+                                        itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+        else if(gloveType === "Specialist Gloves"){
+            // Randomise Specialist Gloves  Skin from array
+            let gloveSkinType = specialistGlovesSkins[Math.floor(Math.random() * specialistGlovesSkins.length)];
+            console.log(gloveSkinType);
+                // Randomise the skin quality from array
+                let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                console.log(qualityType);
+                    // Display what Gloves it is
+                    const itemDetails = document.getElementById("item-type");
+                    itemDetails.textContent = `Item: ${gloveType}`;
+                        // Display what skin it has
+                        const itemSkin = document.getElementById("skin-type");
+                        itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                            // Display the quality 
+                            const itemQuality = document.getElementById("quality-type");
+                            itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+        else if(gloveType === "Sport Gloves"){
+                        // Randomise Sport Gloves  Skin from array
+                        let gloveSkinType = sportGlovesSkins[Math.floor(Math.random() * sportGlovesSkins.length)];
+                        console.log(gloveSkinType);
+                            // Randomise the skin quality from array
+                            let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                            console.log(qualityType);
+                                // Display what Gloves it is
+                                const itemDetails = document.getElementById("item-type");
+                                itemDetails.textContent = `Item: ${gloveType}`;
+                                    // Display what skin it has
+                                    const itemSkin = document.getElementById("skin-type");
+                                    itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                                        // Display the quality 
+                                        const itemQuality = document.getElementById("quality-type");
+                                        itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+        else if(gloveType === "Bloodhount Gloves"){
+            // Randomise Bloodhound Gloves  Skin from array
+            let gloveSkinType = bloodhoundGlovesSkins[Math.floor(Math.random() * bloodhoundGlovesSkins.length)];
+            console.log(gloveSkinType);
+                // Randomise the skin quality from array
+                let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                console.log(qualityType);
+                    // Display what Gloves it is
+                    const itemDetails = document.getElementById("item-type");
+                    itemDetails.textContent = `Item: ${gloveType}`;
+                        // Display what skin it has
+                        const itemSkin = document.getElementById("skin-type");
+                        itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                            // Display the quality 
+                            const itemQuality = document.getElementById("quality-type");
+                            itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+        else if(gloveType === "Hydra Gloves"){
+            // Randomise Hydra Gloves  Skin from array
+            let gloveSkinType = hydraGlovesSkins[Math.floor(Math.random() * hydraGlovesSkins.length)];
+            console.log(gloveSkinType);
+                // Randomise the skin quality from array
+                let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                console.log(qualityType);
+                    // Display what Gloves it is
+                    const itemDetails = document.getElementById("item-type");
+                    itemDetails.textContent = `Item: ${gloveType}`;
+                        // Display what skin it has
+                        const itemSkin = document.getElementById("skin-type");
+                        itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                            // Display the quality 
+                            const itemQuality = document.getElementById("quality-type");
+                            itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+        else if(gloveType === "Broken Fang Gloves"){
+            // Randomise Broken Fang Gloves  Skin from array
+            let gloveSkinType = brokenFangGlovesSkins[Math.floor(Math.random() * brokenFangGlovesSkins.length)];
+            console.log(gloveSkinType);
+                // Randomise the skin quality from array
+                let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                console.log(qualityType);
+                    // Display what Gloves it is
+                    const itemDetails = document.getElementById("item-type");
+                    itemDetails.textContent = `Item: ${gloveType}`;
+                        // Display what skin it has
+                        const itemSkin = document.getElementById("skin-type");
+                        itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                            // Display the quality 
+                            const itemQuality = document.getElementById("quality-type");
+                            itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+        else {
+            // Randomise Driver Gloves  Skin from array
+            let gloveSkinType = driverGlovesSkins[Math.floor(Math.random() * driverGlovesSkins.length)];
+            console.log(gloveSkinType);
+                // Randomise the skin quality from array
+                let qualityType = quality[Math.floor(Math.random() * quality.length)];
+                console.log(qualityType);
+                    // Display what Gloves it is
+                    const itemDetails = document.getElementById("item-type");
+                    itemDetails.textContent = `Item: ${gloveType}`;
+                        // Display what skin it has
+                        const itemSkin = document.getElementById("skin-type");
+                        itemSkin.textContent = `Skin: ${gloveSkinType}`;
+                            // Display the quality 
+                            const itemQuality = document.getElementById("quality-type");
+                            itemQuality.textContent = `Quality: ${qualityType}`;   
+        }
+}
+
 
 // Arrays:
 
@@ -463,6 +642,7 @@ const quality = [
     "Factory New",
     "Minimal Wear",
     "Field Tested",
+    "Well Worn",
     "Battle Scarred"
 ]
 
@@ -945,4 +1125,112 @@ const ursusKnifeSkins = [
     "Rust Coat",
     "Crimson Web",
     "Fade"
+]
+
+//Gloves List
+const gloves = [
+    "Hand Wraps",
+    "Moto Gloves",
+    "Specialist Gloves",
+    "Sport Gloves",
+    "Bloodhound Gloves",
+    "Hydra Gloves",
+    "Broken Fang Gloves",
+    "Driver Gloves"
+]
+
+const handWrapsSkins = [
+    "Leather",
+    "Slaughter",
+    "Badlands",
+    "Spruce DDPAT",
+    "Duct Tape",
+    "Cobalt Skulls",
+    "Overprint",
+    "Arboreal",
+    "CAUTION!",
+    "Constrictor",
+    "Giraffe",
+    "Desert Shamagh"
+]
+
+const motoGlovesSkins = [
+    "Eclipse",
+    "Spearmint",
+    "Boom!",
+    "Cool Mint",
+    "Transport",
+    "Polygon",
+    "POW!",
+    "Turtle",
+    "Finish Line",
+    "Blood Pressure",
+    "3rd Commando Company",
+    "Smoke Out"
+]
+
+const specialistGlovesSkins = [
+    "Forest+DDPAT",
+    "Emerald Web",
+    "Crimson Kimono",
+    "Foundation",
+    "Fade",
+    "Buckshot",
+    "Crimson Web",
+    "Mogul",
+    "Marble Fade",
+    "Tiger Strike",
+    "Lt. Commander",
+    "Field Agent"
+]
+
+const sportGlovesSkins = [
+    "Hedge Maze",
+    "Superconductor",
+    "Arid",
+    "Pandora's Box",
+    "Bronze Morph",
+    "Amphibious",
+    "Vice",
+    "Omega",
+    "Slingshot",
+    "Scarlet Shamagh",
+    "Big Game",
+    "Nocts"
+]
+
+const bloodhoundGlovesSkins = [
+    "Snakebite",
+    "Bronzed",
+    "Guerrilla",
+    "Charred"
+]
+
+const hydraGlovesSkins = [
+    "Emerald",
+    "Case Hardened",
+    "Rattler",
+    "Mangrove"
+]
+
+const brokenFangGlovesSkins = [
+    "Jade",
+    "Yellow Banded",
+    "Needle Point",
+    "Unhinged"
+]
+
+const driverGlovesSkins = [
+    "Convoy",
+    "Crimson Weave",
+    "Diamondback",
+    "Lunar Weave",
+    "Racing Green",
+    "Overtake",
+    "King Snake",
+    "Imperial Plaid",
+    "Snow Leopard",
+    "Rezan the Red",
+    "Queen Jaguar",
+    "Black Tie"
 ]
