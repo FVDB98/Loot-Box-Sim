@@ -2,9 +2,9 @@ async function init () {
     const node = document.querySelector("#type-text")
     
     await sleep(0)
-    node.innerText = ""
+    node.innerText = "Avoid buying loot boxes, and avoid "
     console.log(node);
-    node?.type('Avoid buying loot boxes, and avoid ')
+    // node?.type('Avoid buying loot boxes, and avoid ')
     console.log(node);
     
     while (true) {
