@@ -4,30 +4,23 @@ async function init () {
     await sleep(0)
     node.innerText = "Avoid buying loot boxes, and avoid "
     console.log(node);
-    // node?.type('Avoid buying loot boxes, and avoid ')
+    node?.type('Avoid buying loot boxes, and avoid ')
     console.log(node);
     
-    // while (true) {
-      // await node.type('regret...')
-      setTimeout(() => {node.type("regret...")}, 2000);
-      // await sleep(2000)
-
-      setTimeout(() => {
-        node.delete("regret...")
-        node.type('waisting your money...')}, 
-        4000);
-      
-      // await node.delete('regret...')
-      // await node.type('waisting your money...')
-      // await sleep(2000)
-      // await node.delete('waisting your money...')
-      // await node.type('becoming addicted...')
-      // await sleep(2000)
-      // await node.delete('becoming addicted...')
-      // await node.type('supporting predatory practices...')
-      // await sleep(2000)
-      // await node.delete('supporting predatory practices...')
-  //   }
+    while (true) {
+      await node.type('regret...')
+      await sleep(2000)
+      await node.delete('regret...')
+      await node.type('waisting your money...')
+      await sleep(2000)
+      await node.delete('waisting your money...')
+      await node.type('becoming addicted...')
+      await sleep(2000)
+      await node.delete('becoming addicted...')
+      await node.type('supporting predatory practices...')
+      await sleep(2000)
+      await node.delete('supporting predatory practices...')
+    }
   }
 
   // setTimeout(() => {console.log("this is the first message")}, 5000);
