@@ -3,7 +3,9 @@ async function init () {
     
     await sleep(0)
     node.innerText = ""
+    console.log(node.type);
     await node?.type('Avoid buying loot boxes, and avoid ')
+    console.log(node.type);
     
     while (true) {
       await node.type('regret...')
@@ -53,3 +55,4 @@ async function init () {
   init()
 
   //see if there are any css styles to add
+  //wrap 
