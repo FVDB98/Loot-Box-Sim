@@ -28,7 +28,7 @@ async function init () {
       // await sleep(2000)
       // await node.delete('supporting predatory practices...')
   //   }
-  // }
+  }
 
   // setTimeout(() => {console.log("this is the first message")}, 5000);
   
