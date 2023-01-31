@@ -8,20 +8,29 @@ async function init () {
     console.log(node);
     
     while (true) {
-      await node.type('regret...')
-      await sleep(2000)
-      await node.delete('regret...')
-      await node.type('waisting your money...')
-      await sleep(2000)
-      await node.delete('waisting your money...')
-      await node.type('becoming addicted...')
-      await sleep(2000)
-      await node.delete('becoming addicted...')
-      await node.type('supporting predatory practices...')
-      await sleep(2000)
-      await node.delete('supporting predatory practices...')
+      // await node.type('regret...')
+      setTimeout(() => {node.type("regret...")}, 2000);
+      // await sleep(2000)
+
+      setTimeout(() => {
+        node.delete("regret...")
+        node.type('waisting your money...')}, 
+        4000);
+      
+      // await node.delete('regret...')
+      // await node.type('waisting your money...')
+      // await sleep(2000)
+      // await node.delete('waisting your money...')
+      // await node.type('becoming addicted...')
+      // await sleep(2000)
+      // await node.delete('becoming addicted...')
+      // await node.type('supporting predatory practices...')
+      // await sleep(2000)
+      // await node.delete('supporting predatory practices...')
     }
   }
+
+  setTimeout(() => {console.log("this is the first message")}, 5000);
   
   
   // Source code 🚩
@@ -56,3 +65,5 @@ async function init () {
 
   //see if there are any css styles to add
   //wrap 
+
+  //for each line to be printed create a new settimeout
