@@ -4,7 +4,7 @@ async function init () {
     await sleep(0)
     node.innerText = ""
     console.log(node);
-    await node?.type('Avoid buying loot boxes, and avoid ')
+    node?.type('Avoid buying loot boxes, and avoid ')
     console.log(node);
     
     while (true) {
