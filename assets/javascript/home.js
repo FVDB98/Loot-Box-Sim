@@ -7,7 +7,7 @@ async function init () {
     // node?.type('Avoid buying loot boxes, and avoid ')
     console.log(node);
     
-    while (true) {
+    // while (true) {
       // await node.type('regret...')
       setTimeout(() => {node.type("regret...")}, 2000);
       // await sleep(2000)
@@ -27,10 +27,10 @@ async function init () {
       // await node.type('supporting predatory practices...')
       // await sleep(2000)
       // await node.delete('supporting predatory practices...')
-    }
-  }
+  //   }
+  // }
 
-  setTimeout(() => {console.log("this is the first message")}, 5000);
+  // setTimeout(() => {console.log("this is the first message")}, 5000);
   
   
   // Source code 🚩
