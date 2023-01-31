@@ -3,7 +3,7 @@ async function init () {
     
     await sleep(0)
     node.innerText = ""
-    await node.type('Avoid buying loot boxes, and avoid ')
+    await node?.type('Avoid buying loot boxes, and avoid ')
     
     while (true) {
       await node.type('regret...')
@@ -51,3 +51,5 @@ async function init () {
   
   
   init()
+
+  //see if there are any css styles to add
